@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLD Bot – Premium Discord Bot</title>
+  <meta name="description"
+    content="SLD Bot is a premium Discord bot featuring music, moderation, and utility commands. Add it to your server today!" />
+  <meta property="og:title" content="SLD Bot – Premium Discord Bot" />
+  <meta property="og:description"
+    content="Music, Moderation & Utility — all in one bot. Supports slash commands and fully multilingual." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-brand">
+        <img src="logo.png" alt="SLD Bot" class="brand-logo" />
+        <span>SLD Bot</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#commands" class="nav-link">Commands</a>
+        <a href="#rules" class="nav-link">Rules</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#support" class="nav-link">Support</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-selector">
+          <button class="lang-btn" id="langBtn">
+            <span class="lang-flag">🇺🇸</span>
+            <span class="lang-chevron">▼</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <a href="#" class="lang-item active" data-lang="en">
+              <span class="lang-flag">🇺🇸</span> English
+            </a>
+            <a href="#" class="lang-item" data-lang="ar">
+              <span class="lang-flag">🇸🇦</span> العربية
+            </a>
+          </div>
+        </div>
+        <a href="https://discord.gg/Rj6qdkGcDH" class="btn-nav" id="nav-join-btn" target="_blank" rel="noopener">
+          Join Server
+        </a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="particles" id="particles"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge animate-entrance">
+        <span class="badge-dot"></span>
+        Online &amp; Ready
+      </div>
+      <h1 class="hero-title animate-entrance delay-1">
+        Meet <span class="gradient-text">SLD Bot</span><br />
+        Your Ultimate Discord Companion
+      </h1>
+      <p class="hero-desc animate-entrance delay-2">
+        Premium music playback, personal playlists, audio effects, and smart utilities — all packed into one sleek bot.
+        Supports slash commands, multilingual, and always online.
+      </p>
+      <div class="hero-actions animate-entrance delay-3">
+        <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
+          class="btn-primary" id="hero-invite-btn" target="_blank" rel="noopener">
+          ➕ Add to Server
+        </a>
+        <a href="https://discord.gg/Rj6qdkGcDH" class="btn-secondary" id="hero-server-btn" target="_blank"
+          rel="noopener">
+          💬 Join Community
+        </a>
+      </div>
+      <div class="hero-stats animate-entrance delay-4">
+        <div class="stat-item">
+          <span class="stat-num" data-target="35">0</span>
+          <p>Commands</p>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="2">0</span>
+          <p>Languages</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-label">About</div>
+      <h2 class="section-title">What is <span class="gradient-text">SLD Bot</span>?</h2>
+      <p class="section-desc">
+        SLD Bot is a feature-rich Discord music bot built for communities that demand the best.
+        Whether you're looking for crystal-clear music playback, personal playlists, audio effects, or handy
+        server utilities — SLD Bot has you covered, 24/7.
+      </p>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">🎵</div>
+          <h3>Premium Music</h3>
+          <p>Stream from YouTube, Spotify, and SoundCloud with high-quality audio and audio effects like bass boost,
+            reverb, and equalizer presets.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">📂</div>
+          <h3>Personal Playlists</h3>
+          <p>Create, save, and load personal playlists. Access your saved songs in any server with a single slash
+            command, any time.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🌐</div>
+          <h3>Multilingual</h3>
+          <p>SLD Bot supports both English 🇺🇸 and Arabic 🇸🇦, making it perfect for international communities.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">⚡</div>
+          <h3>Slash Commands</h3>
+          <p>Fully powered by Discord's modern application commands. No prefix memorization needed — just type
+            <code>/</code> and go.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section id="features" class="section features-section">
+    <div class="container">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything Your Server <span class="gradient-text">Needs</span></h2>
+      <div class="features-grid">
+
+        <div class="feature-card large">
+          <div class="feature-icon-wrap purple">🎶</div>
+          <h3>Advanced Music Player</h3>
+          <p>Play music from YouTube, Shuffle queues, seek to timestamps, and enjoy rich audio effects in high quality.
+          </p>
+          <ul class="feature-list">
+            <li>▸ Bass Boost / Reverb / Treble</li>
+            <li>▸ Equalizer Presets (Rock, Pop, Jazz…)</li>
+            <li>▸ Queue Management &amp; Save/Load</li>
+            <li>▸ Vote Skip &amp; Lyrics Display</li>
+          </ul>
+        </div>
+
+        <div class="feature-card large right">
+          <div class="feature-icon-wrap teal">📂</div>
+          <h3>Personal Playlists</h3>
+          <p>Create, save, load, and delete personal playlists. Access them any time in any server with a single slash
+            command.</p>
+          <ul class="feature-list">
+            <li>▸ /createplaylist – Build your list</li>
+            <li>▸ /loadplaylist – Load and play instantly</li>
+            <li>▸ /playlists – See all your saved playlists</li>
+            <li>▸ /deleteplaylist – Clean up old ones</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap pink">📊</div>
+          <h3>Server &amp; User Info</h3>
+          <p>Get detailed server statistics, user profiles, avatars, roles, join dates, and live bot performance metrics
+            with <code>/server</code> and <code>/userinfo</code>.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap orange">⚙️</div>
+          <h3>Custom Settings</h3>
+          <p>Set a custom prefix per server and switch between English and Arabic instantly using <code>/setup</code>.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap blue">🌐</div>
+          <h3>Multilingual</h3>
+          <p>Full support for English 🇺🇸 and Arabic 🇸🇦. Use <code>/setup</code> to switch languages for your whole
+            server in seconds.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap purple">⚡</div>
+          <h3>Slash Commands</h3>
+          <p>All features accessible via modern Discord slash commands. No prefix to memorize — just type <code>/</code>
+            and discover everything.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMMANDS ===== -->
+  <section id="commands" class="section commands-section">
+    <div class="container">
+      <div class="section-label">Commands</div>
+      <h2 class="section-title">All <span class="gradient-text">Slash Commands</span></h2>
+      <p class="section-desc">Every command is available as a Discord slash command. Just type <code>/</code> in any
+        channel.</p>
+
+      <div class="cmd-tabs" id="cmdTabs">
+        <button class="cmd-tab active" data-tab="music" id="tab-music">🎵 Music</button>
+        <button class="cmd-tab" data-tab="utility" id="tab-utility">⚙️ Utility</button>
+        <button class="cmd-tab" data-tab="general" id="tab-general">💡 General</button>
+      </div>
+
+      <div class="cmd-panel active" id="panel-music">
+        <div class="cmd-grid">
+          <div class="cmd-item"><code>/play</code><span>Play a song or URL from YouTube/Spotify</span></div>
+          <div class="cmd-item"><code>/skip</code><span>Skip the current song</span></div>
+          <div class="cmd-item"><code>/stop</code><span>Stop playback and leave the voice channel</span></div>
+          <div class="cmd-item"><code>/nowplaying</code><span>Show the currently playing track</span></div>
+          <div class="cmd-item"><code>/queue</code><span>Display the song queue</span></div>
+          <div class="cmd-item"><code>/shuffle</code><span>Shuffle the queue randomly</span></div>
+          <div class="cmd-item"><code>/repeat</code><span>Toggle repeat for the current song</span></div>
+          <div class="cmd-item"><code>/seek</code><span>Jump to a specific timestamp in the song</span></div>
+          <div class="cmd-item"><code>/volume</code><span>Set the playback volume (1–100)</span></div>
+          <div class="cmd-item"><code>/search</code><span>Search for songs and pick from results</span></div>
+          <div class="cmd-item"><code>/lyrics</code><span>Fetch lyrics for the current or named song</span></div>
+          <div class="cmd-item"><code>/voteskip</code><span>Start a vote to skip the current song</span></div>
+          <div class="cmd-item"><code>/remove</code><span>Remove a specific song from the queue</span></div>
+          <div class="cmd-item"><code>/move</code><span>Move a song to a different position in the queue</span></div>
+          <div class="cmd-item"><code>/audio_effects</code><span>Apply bass boost, reverb, treble, or EQ preset</span>
+          </div>
+          <div class="cmd-item"><code>/save_queue</code><span>Save the current queue for later</span></div>
+          <div class="cmd-item"><code>/load_queue</code><span>Load a previously saved queue</span></div>
+          <div class="cmd-item"><code>/createplaylist</code><span>Create a new personal playlist</span></div>
+          <div class="cmd-item"><code>/playlists</code><span>View all your saved playlists</span></div>
+          <div class="cmd-item"><code>/loadplaylist</code><span>Load and play a saved playlist</span></div>
+          <div class="cmd-item"><code>/deleteplaylist</code><span>Delete one of your playlists</span></div>
+        </div>
+      </div>
+
+      <div class="cmd-panel" id="panel-utility">
+        <div class="cmd-grid">
+          <div class="cmd-item"><code>/ping</code><span>Check bot latency and system performance</span></div>
+          <div class="cmd-item"><code>/server</code><span>Show detailed server information</span></div>
+          <div class="cmd-item"><code>/userinfo</code><span>Show information about a user</span></div>
+          <div class="cmd-item"><code>/avatar</code><span>Get the display avatar of a user</span></div>
+          <div class="cmd-item"><code>/setnick</code><span>Change a member's nickname (Admin)</span></div>
+          <div class="cmd-item"><code>/moveme</code><span>Move yourself to another voice channel</span></div>
+          <div class="cmd-item"><code>/prefix</code><span>Change the bot's command prefix (Admin)</span></div>
+          <div class="cmd-item"><code>/setup</code><span>Set up bot language for this server (Admin)</span></div>
+          <div class="cmd-item"><code>/calc</code><span>Evaluate a math expression</span></div>
+          <div class="cmd-item"><code>/roll</code><span>Roll a dice (e.g. 2d6)</span></div>
+          <div class="cmd-item"><code>/emojis</code><span>List all server emojis</span></div>
+        </div>
+      </div>
+
+      <div class="cmd-panel" id="panel-general">
+        <div class="cmd-grid">
+          <div class="cmd-item"><code>/help</code><span>Show the full help menu with all categories</span></div>
+          <div class="cmd-item"><code>/invite</code><span>Get the bot's invite link to add to your server</span></div>
+          <div class="cmd-item"><code>/vote</code><span>Vote for SLD Bot on Top.gg (every 12 hours)</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== RULES ===== -->
+  <section id="rules" class="section rules-section">
+    <div class="container">
+      <div class="section-label">Server Rules</div>
+      <h2 class="section-title">Community <span class="gradient-text">Rules</span></h2>
+      <p class="section-desc">By joining our server or using our bot, you agree to follow these rules.</p>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-num">01</div>
+          <h3>Be Respectful</h3>
+          <p>Treat all members with respect. Harassment, hate speech, or discrimination of any kind will result in an
+            immediate ban.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">02</div>
+          <h3>No Spam</h3>
+          <p>Do not flood channels with repeated messages, excessive pings, or irrelevant content. Use the appropriate
+            channels.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">03</div>
+          <h3>No NSFW Content</h3>
+          <p>All content must be suitable for a general audience. NSFW material is strictly prohibited outside of
+            designated channels.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">04</div>
+          <h3>No Advertising</h3>
+          <p>Do not advertise other servers, bots, or services without explicit permission from the staff team.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">05</div>
+          <h3>English &amp; Arabic Only</h3>
+          <p>Our server is bilingual. Please communicate in English or Arabic to ensure moderation is effective and fair
+            for all.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">06</div>
+          <h3>Follow Discord ToS</h3>
+          <p>You must comply with <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord's Terms of
+              Service</a> and <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Community
+              Guidelines</a> at all times.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="section faq-section">
+    <div class="container">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+      <div class="faq-list" id="faqList">
+
+        <div class="faq-item" id="faq-1">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1">
+            How do I add SLD Bot to my server?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-1" role="region">
+            <p>Click the <strong>Add to Server</strong> button at the top of this page or use the <code>/invite</code>
+              command inside Discord. You'll need the <em>Manage Server</em> permission in your target server.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-2">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2">
+            Does SLD Bot support prefix commands?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-2" role="region">
+            <p>Yes — SLD Bot supports both modern <strong>slash commands</strong> (<code>/play</code>) and a custom text
+              prefix (default <code>3</code>). Admins can change the prefix per-server using <code>/prefix</code>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-3">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3">
+            What music sources does the bot support?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-3" role="region">
+            <p>SLD Bot supports <strong>YouTube</strong>,
+              direct audio URLs. You can search by name or paste a URL directly into <code>/play</code>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-4">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4">
+            Can I change the bot's language?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-4" role="region">
+            <p>Yes! Use <code>/setup</code> and select either <strong>English 🇺🇸</strong> or <strong>Arabic
+                🇸🇦</strong>. The setting applies to your entire server. Only administrators can change it.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-5">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-5">
+            What data does the bot collect?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-5" role="region">
+            <p>SLD Bot stores server-specific settings (prefix, language) in a local
+              database. No personal messages, voice audio, or user content is ever recorded. See our <a
+                href="privacy.html">Privacy Policy</a> for full details.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-6">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-6">
+            How do I report a bug or request a feature?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-6" role="region">
+            <p>Join our <a href="https://discord.gg/Rj6qdkGcDH" target="_blank" rel="noopener">Support Server</a> and
+              open a ticket or post in the suggestions channel. Our team responds as quickly as possible.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-7">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-7">
+            Is the bot free to use?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" id="faq-a-7" role="region">
+            <p>Yes, SLD Bot is completely free! You can support us by voting on <a
+                href="https://top.gg/bot/1289557315741159544/vote" target="_blank" rel="noopener">Top.gg</a> every 12
+              hours, which helps us grow and keep the bot alive.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUPPORT ===== -->
+  <section id="support" class="section support-section">
+    <div class="container">
+      <div class="section-label">Support</div>
+      <h2 class="section-title">We're Here to <span class="gradient-text">Help</span></h2>
+      <p class="section-desc">Need help? Choose the fastest way to reach us.</p>
+      <div class="support-grid">
+        <a href="https://discord.gg/Rj6qdkGcDH" class="support-card" id="support-discord" target="_blank"
+          rel="noopener">
+          <div class="support-icon">💬</div>
+          <h3>Discord Support Server</h3>
+          <p>Fastest way to get help. Join our community, open a ticket, or chat with our staff.</p>
+          <span class="support-link">Join Now →</span>
+        </a>
+        <a href="https://top.gg/bot/1289557315741159544" class="support-card" id="support-topgg" target="_blank"
+          rel="noopener">
+          <div class="support-icon">⭐</div>
+          <h3>Top.gg Bot Page</h3>
+          <p>Leave a review, vote for the bot, or read community feedback on our Top.gg listing.</p>
+          <span class="support-link">View Page →</span>
+        </a>
+        <div class="support-card" id="support-developer" style="cursor: default;">
+          <div class="support-icon"
+            style="color: #5865F2; display: flex; align-items: center; justify-content: center;">
+            <svg style="width: 32px; height: 32px; fill: currentColor;" viewBox="0 0 127.14 96.36">
+              <path
+                d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a67.55,67.55,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14c2.64-27.38-4.51-51.11-19.32-72.1M42.63,65.22C38.61,65.22,35.34,61.53,35.34,57s3.24-8.22,7.29-8.22,7.31,3.67,7.29,8.22c0,4.52-3.24,8.22-7.29,8.22m41.88,0c-4,0-7.29-3.69-7.29-8.22s3.24-8.22,7.29-8.22,7.31,3.67,7.29,8.22c0,4.52-3.24,8.22-7.29,8.22" />
+            </svg>
+          </div>
+          <h3>Developer Discord</h3>
+          <p>For inquiries, business contact, or any special requests, DM me! Username: <strong
+              style="color: #fff; font-weight: 700; background: rgba(88, 101, 242, 0.2); padding: 2px 6px; border-radius: 4px;">Qnej</strong>
+          </p>
+          <span class="support-link"
+            onclick="navigator.clipboard.writeText('Qnej'); alert('Discord Username (Qnej) copied to clipboard!');"
+            style="cursor: pointer;">Copy Username 📋</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-section">
+    <div class="cta-bg">
+      <div class="cta-orb"></div>
+    </div>
+    <div class="container cta-content">
+      <h2>Ready to Elevate Your Server?</h2>
+      <p>Join thousands of communities already using SLD Bot. It's free, fast, and powerful.</p>
+      <div class="cta-actions">
+        <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
+          class="btn-primary" id="cta-invite-btn" target="_blank" rel="noopener">
+          ➕ Add SLD Bot
+        </a>
+        <a href="https://top.gg/bot/1289557315741159544/vote" class="btn-outlined" id="cta-vote-btn" target="_blank"
+          rel="noopener">
+          ⭐ Vote on Top.gg
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-brand" style="margin-bottom:12px;">
+            <img src="logo.png" alt="SLD Bot" class="brand-logo" />
+            <span>SLD Bot</span>
+          </div>
+          <p>A premium Discord music bot for music, playlists, and utilities. Trusted by communities worldwide.</p>
+          <div class="social-links">
+            <a href="https://discord.gg/Rj6qdkGcDH" class="social-link" aria-label="Discord" target="_blank"
+              rel="noopener">Discord</a>
+            <a href="https://top.gg/bot/1289557315741159544" class="social-link" aria-label="Top.gg" target="_blank"
+              rel="noopener">Top.gg</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#commands">Commands</a>
+          <a href="#rules">Rules</a>
+          <a href="#faq">FAQ</a>
+          <a href="#support">Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord ToS</a>
+          <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Community Guidelines</a>
+        </div>
+        <div class="footer-col">
+          <h4>Bot Links</h4>
+          <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
+            target="_blank" rel="noopener">Invite Bot</a>
+          <a href="https://top.gg/bot/1289557315741159544/vote" target="_blank" rel="noopener">Vote on Top.gg</a>
+          <a href="https://discord.gg/Rj6qdkGcDH" target="_blank" rel="noopener">Support Server</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 SLD Bot. All rights reserved. Not affiliated with Discord Inc.</p>
+        <p>Made with ❤️ for the community.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
