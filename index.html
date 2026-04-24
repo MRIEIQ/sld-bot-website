@@ -50,6 +50,9 @@
             </a>
           </div>
         </div>
+        <a href="#" class="btn-nav login-discord-btn" id="nav-login-btn">
+          Login
+        </a>
         <a href="https://discord.gg/Rj6qdkGcDH" class="btn-nav" id="nav-join-btn" target="_blank" rel="noopener">
           Join Server
         </a>
@@ -82,13 +85,12 @@
         Supports slash commands, multilingual, and always online.
       </p>
       <div class="hero-actions animate-entrance delay-3">
-        <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
-          class="btn-primary" id="hero-invite-btn" target="_blank" rel="noopener">
-          ➕ Add to Server
+        <a href="#" class="btn-primary login-discord-btn">
+          🔗 Login with Discord
         </a>
-        <a href="https://discord.gg/Rj6qdkGcDH" class="btn-secondary" id="hero-server-btn" target="_blank"
-          rel="noopener">
-          💬 Join Community
+        <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
+          class="btn-secondary" id="hero-invite-btn" target="_blank" rel="noopener">
+          ➕ Add to Server
         </a>
       </div>
       <div class="hero-stats animate-entrance delay-4">
@@ -105,6 +107,29 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== DASHBOARD (Hidden by default) ===== -->
+  <section id="dashboard" class="hero" style="display: none;">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="hero-content">
+      <img id="dash-avatar" src="" alt="User Avatar" style="border-radius: 50%; width: 120px; height: 120px; border: 4px solid #5865F2; margin-bottom: 20px; box-shadow: 0 0 20px rgba(88,101,242,0.5);" />
+      <h1 class="hero-title animate-entrance">
+        Welcome, <span class="gradient-text" id="dash-username">User</span>
+      </h1>
+      <p class="hero-desc animate-entrance delay-1">
+        Discord ID: <code id="dash-id" style="background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 4px;"></code>
+      </p>
+      <div class="hero-actions animate-entrance delay-2">
+        <button class="btn-secondary" id="logout-btn">
+          Logout
+        </button>
+      </div>
+    </div>
+  </section>
+
 
 
   <!-- ===== ABOUT ===== -->
@@ -526,6 +551,7 @@
     </div>
   </footer>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 

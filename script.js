@@ -139,12 +139,12 @@ let mouseTimeout;
 document.addEventListener('mousemove', (e) => {
   glow.style.left = `${e.clientX}px`;
   glow.style.top = `${e.clientY}px`;
-  
+
   if (!isMouseMoving) {
     glow.style.opacity = '1';
     isMouseMoving = true;
   }
-  
+
   clearTimeout(mouseTimeout);
   mouseTimeout = setTimeout(() => {
     glow.style.opacity = '0';
@@ -163,14 +163,14 @@ buttons.forEach(btn => {
     const rect = this.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const ripple = document.createElement('span');
     ripple.className = 'ripple';
     ripple.style.left = `${x}px`;
     ripple.style.top = `${y}px`;
-    
+
     this.appendChild(ripple);
-    
+
     setTimeout(() => {
       ripple.remove();
     }, 600);
@@ -201,15 +201,101 @@ if (langBtn && langSelector) {
       // Update active state visually
       langItems.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
-      
+
       // Update button flag
       const flag = item.querySelector('.lang-flag').textContent;
       langBtn.querySelector('.lang-flag').textContent = flag;
-      
+
       langSelector.classList.remove('open');
-      
-      // Add actual language change logic here if needed
-      // e.g. set cookie, reload page with ?lang=ar
+
+      // Translation logic
+      const lang = item.getAttribute('data-lang');
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      if (typeof translations === 'undefined') return;
+
+      if (!window.originalTexts) {
+        window.originalTexts = new Map();
+        function walk(node) {
+          // Skip script and style tags
+          if (node.nodeType === Node.ELEMENT_NODE && (node.tagName === 'SCRIPT' || node.tagName === 'STYLE' || node.tagName === 'CODE')) return;
+          if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim().length > 0) {
+            window.originalTexts.set(node, node.nodeValue);
+          } else {
+            node.childNodes.forEach(walk);
+          }
+        }
+        walk(document.body);
+      }
+
+      window.originalTexts.forEach((originalText, node) => {
+        let text = originalText.trim().replace(/\s+/g, ' ');
+        if (translations[lang] && translations[lang][text]) {
+          const leadingMatch = originalText.match(/^\s*/);
+          const trailingMatch = originalText.match(/\s*$/);
+          node.nodeValue = leadingMatch[0] + translations[lang][text] + trailingMatch[0];
+        } else {
+          node.nodeValue = originalText; // fallback to en
+        }
+      });
     });
+  });
+}
+
+// ── Discord OAuth2 Login ──
+const CLIENT_ID = '1289557315741159544';
+// Static redirect URI as requested
+const REDIRECT_URI = 'https://mrieiq.github.io/sld-bot-website/';
+
+const loginBtns = document.querySelectorAll('.login-discord-btn');
+loginBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Using response_type=token since frontend-only apps cannot securely exchange code for token
+    const oauthUrl = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify+email+guilds`;
+    window.location.href = oauthUrl;
+  });
+});
+
+window.addEventListener('load', () => {
+  const fragment = new URLSearchParams(window.location.hash.slice(1));
+  const accessToken = fragment.get('access_token');
+  const tokenType = fragment.get('token_type');
+
+  if (accessToken) {
+    // Hide all sections except dashboard
+    document.querySelectorAll('section, footer').forEach(s => {
+      if (s.id !== 'dashboard') s.style.display = 'none';
+    });
+    const dashboard = document.getElementById('dashboard');
+    if (dashboard) dashboard.style.display = 'flex';
+
+    // Also hide login buttons
+    loginBtns.forEach(btn => btn.style.display = 'none');
+
+    fetch('https://discord.com/api/users/@me', {
+      headers: {
+        authorization: `${tokenType} ${accessToken}`
+      }
+    })
+      .then(result => result.json())
+      .then(response => {
+        const { username, discriminator, avatar, id } = response;
+        document.getElementById('dash-username').textContent = discriminator === '0' ? username : `${username}#${discriminator}`;
+        document.getElementById('dash-id').textContent = id;
+        document.getElementById('dash-avatar').src = avatar ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=256` : 'https://cdn.discordapp.com/embed/avatars/0.png';
+
+        // Clean up URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+      })
+      .catch(console.error);
+  }
+});
+
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    window.location.href = window.location.pathname;
   });
 }
