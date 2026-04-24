@@ -264,15 +264,21 @@ window.addEventListener('load', () => {
   const tokenType = fragment.get('token_type');
 
   if (accessToken) {
-    // Hide all sections except dashboard
-    document.querySelectorAll('section, footer').forEach(s => {
-      if (s.id !== 'dashboard') s.style.display = 'none';
-    });
-    const dashboard = document.getElementById('dashboard');
-    if (dashboard) dashboard.style.display = 'flex';
-
-    // Also hide login buttons
+    // Hide login buttons
     loginBtns.forEach(btn => btn.style.display = 'none');
+
+    // Show user profile in navbar
+    const userProfile = document.getElementById('user-profile');
+    if (userProfile) {
+      userProfile.style.display = 'flex';
+      
+      // Add logout functionality on click
+      userProfile.addEventListener('click', () => {
+        if (confirm('Are you sure you want to logout?')) {
+          window.location.href = window.location.pathname;
+        }
+      });
+    }
 
     fetch('https://discord.com/api/users/@me', {
       headers: {
@@ -282,9 +288,14 @@ window.addEventListener('load', () => {
       .then(result => result.json())
       .then(response => {
         const { username, discriminator, avatar, id } = response;
-        document.getElementById('dash-username').textContent = discriminator === '0' ? username : `${username}#${discriminator}`;
-        document.getElementById('dash-id').textContent = id;
-        document.getElementById('dash-avatar').src = avatar ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=256` : 'https://cdn.discordapp.com/embed/avatars/0.png';
+        const displayName = discriminator === '0' ? username : `${username}#${discriminator}`;
+        const avatarUrl = avatar ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=64` : 'https://cdn.discordapp.com/embed/avatars/0.png';
+
+        const navUsername = document.getElementById('nav-username');
+        if (navUsername) navUsername.textContent = displayName;
+        
+        const navAvatar = document.getElementById('nav-avatar');
+        if (navAvatar) navAvatar.src = avatarUrl;
 
         // Clean up URL
         window.history.replaceState({}, document.title, window.location.pathname);
@@ -292,10 +303,3 @@ window.addEventListener('load', () => {
       .catch(console.error);
   }
 });
-
-const logoutBtn = document.getElementById('logout-btn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', () => {
-    window.location.href = window.location.pathname;
-  });
-}
