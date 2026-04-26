@@ -272,11 +272,9 @@ window.addEventListener('load', () => {
     if (userProfile) {
       userProfile.style.display = 'flex';
       
-      // Add logout functionality on click
+      // Open dashboard on click instead of logout confirm
       userProfile.addEventListener('click', () => {
-        if (confirm('Are you sure you want to logout?')) {
-          window.location.href = window.location.pathname;
-        }
+        openDashboard();
       });
     }
 
@@ -297,9 +295,192 @@ window.addEventListener('load', () => {
         const navAvatar = document.getElementById('nav-avatar');
         if (navAvatar) navAvatar.src = avatarUrl;
 
+        // Store user data for dashboard
+        window._dashUser = { username: displayName, avatar: avatarUrl, id };
+
         // Clean up URL
         window.history.replaceState({}, document.title, window.location.pathname);
+
+        // Pre-fetch guilds in background
+        prefetchGuilds(tokenType, accessToken);
       })
       .catch(console.error);
   }
+
+  // ── Floating Action Button (FAB) ──
+  const fabMain = document.getElementById('fabMain');
+  const fabMenu = document.getElementById('fabMenu');
+  if (fabMain && fabMenu) {
+    fabMain.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = fabMenu.classList.contains('open');
+      fabMenu.classList.toggle('open', !isOpen);
+      fabMain.classList.toggle('open', !isOpen);
+      fabMain.setAttribute('aria-expanded', String(!isOpen));
+    });
+    document.addEventListener('click', (e) => {
+      if (!fabMain.contains(e.target) && !fabMenu.contains(e.target)) {
+        fabMenu.classList.remove('open');
+        fabMain.classList.remove('open');
+        fabMain.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ── Mobile Nav: inject lang + login inside hamburger panel ──
+  injectMobileNavActions();
 });
+
+// ── Prefetch & cache guilds ──
+let _guildsCache = null;
+function prefetchGuilds(tokenType, accessToken) {
+  fetch('https://discord.com/api/users/@me/guilds', {
+    headers: { authorization: `${tokenType} ${accessToken}` }
+  })
+    .then(r => r.json())
+    .then(guilds => {
+      // Filter: user has Manage Server permission (0x20)
+      _guildsCache = Array.isArray(guilds)
+        ? guilds.filter(g => (parseInt(g.permissions) & 0x20) !== 0)
+        : [];
+    })
+    .catch(() => { _guildsCache = []; });
+}
+
+// ── Dashboard Modal ──
+const BOT_CLIENT_ID = '1289557315741159544';
+const BOT_INVITE_BASE = `https://discord.com/oauth2/authorize?client_id=${BOT_CLIENT_ID}&scope=bot+applications.commands&permissions=37080128`;
+
+function openDashboard() {
+  const modal = document.getElementById('dashboardModal');
+  if (!modal) return;
+  modal.classList.add('visible');
+  document.body.style.overflow = 'hidden';
+
+  // Fill user info in dashboard header
+  const u = window._dashUser || {};
+  const dashAvatar = document.getElementById('dash-avatar');
+  const dashUsername = document.getElementById('dash-username');
+  const dashUserid = document.getElementById('dash-userid');
+  if (dashAvatar) dashAvatar.src = u.avatar || '';
+  if (dashUsername) dashUsername.textContent = u.username || '';
+  if (dashUserid) dashUserid.textContent = u.id ? `ID: ${u.id}` : '';
+
+  renderServers();
+}
+
+function closeDashboard() {
+  const modal = document.getElementById('dashboardModal');
+  if (!modal) return;
+  modal.classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+function renderServers() {
+  const list = document.getElementById('dash-servers-list');
+  if (!list) return;
+
+  if (_guildsCache === null) {
+    list.innerHTML = `<div class="dash-loading"><span class="dash-spinner"></span>Loading servers…</div>`;
+    // Poll until ready
+    const poll = setInterval(() => {
+      if (_guildsCache !== null) {
+        clearInterval(poll);
+        renderServers();
+      }
+    }, 400);
+    return;
+  }
+
+  if (_guildsCache.length === 0) {
+    list.innerHTML = `<div class="dash-empty">No servers found where you have Manage Server permission.</div>`;
+    return;
+  }
+
+  list.innerHTML = _guildsCache.map(g => {
+    const iconUrl = g.icon
+      ? `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=64`
+      : null;
+    const iconHtml = iconUrl
+      ? `<img class="dash-server-icon" src="${iconUrl}" alt="${g.name}" />`
+      : `<div class="dash-server-icon-placeholder">${(g.name[0] || '?').toUpperCase()}</div>`;
+
+    const inviteUrl = `${BOT_INVITE_BASE}&guild_id=${g.id}`;
+
+    return `
+      <div class="dash-server-item">
+        <div class="dash-server-left">
+          ${iconHtml}
+          <div>
+            <div class="dash-server-name">${escapeHtml(g.name)}</div>
+            <div class="dash-server-tag">ID: ${g.id}</div>
+          </div>
+        </div>
+        <a href="${inviteUrl}" target="_blank" rel="noopener" class="dash-invite-btn">➕ Invite Bot</a>
+      </div>`;
+  }).join('');
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Dashboard close events
+document.addEventListener('DOMContentLoaded', () => {
+  const dashClose = document.getElementById('dashClose');
+  const dashOverlay = document.getElementById('dashboardModal');
+  if (dashClose) dashClose.addEventListener('click', closeDashboard);
+  if (dashOverlay) {
+    dashOverlay.addEventListener('click', (e) => {
+      if (e.target === dashOverlay) closeDashboard();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDashboard();
+  });
+});
+
+// ── Mobile Nav: inject lang selector + login button into hamburger menu ──
+function injectMobileNavActions() {
+  const navLinks = document.getElementById('navLinks');
+  if (!navLinks) return;
+
+  // Only inject on mobile (screen ≤ 600)
+  if (window.innerWidth > 600) return;
+
+  // Avoid double inject
+  if (document.getElementById('mobileNavActions')) return;
+
+  const currentLang = document.documentElement.lang || 'en';
+  const loginBtnVisible = document.querySelector('.login-discord-btn') &&
+    document.querySelector('.login-discord-btn').style.display !== 'none';
+
+  const wrapper = document.createElement('div');
+  wrapper.id = 'mobileNavActions';
+
+  wrapper.innerHTML = `
+    <div class="mobile-nav-divider"></div>
+    <div class="mobile-nav-actions">
+      <div class="mobile-lang-row">
+        <button class="mobile-lang-btn ${currentLang !== 'ar' ? 'active' : ''}" data-lang="en" id="mobile-lang-en">🇺🇸 English</button>
+        <button class="mobile-lang-btn ${currentLang === 'ar' ? 'active' : ''}" data-lang="ar" id="mobile-lang-ar">🇸🇦 العربية</button>
+      </div>
+      ${loginBtnVisible !== false ? `<a href="#" class="mobile-login-btn login-discord-btn">🔗 Login with Discord</a>` : ''}
+    </div>
+  `;
+  navLinks.appendChild(wrapper);
+
+  // Wire up mobile lang buttons to same logic as desktop
+  wrapper.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      // Sync with desktop lang selector
+      const desktopItem = document.querySelector(`.lang-item[data-lang="${lang}"]`);
+      if (desktopItem) desktopItem.click();
+      // Update active state on mobile buttons
+      wrapper.querySelectorAll('.mobile-lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+}
+

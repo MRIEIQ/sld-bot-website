@@ -53,9 +53,12 @@
         <a href="#" class="btn-nav login-discord-btn" id="nav-login-btn">
           Login
         </a>
-        <div id="user-profile" style="display: none; align-items: center; gap: 8px; margin-right: 12px; cursor: pointer;" title="Click to Logout" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-          <img id="nav-avatar" src="" alt="User Avatar" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--purple-500); object-fit: cover;" />
-          <span id="nav-username" style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary);"></span>
+        <div id="user-profile" style="display: none; align-items: center; gap: 10px; margin-right: 12px; cursor: pointer; background: rgba(139,92,246,0.1); padding: 4px 12px 4px 4px; border-radius: 20px; border: 1px solid rgba(139,92,246,0.3);" title="Open Dashboard" onmouseover="this.style.background='rgba(139,92,246,0.2)'" onmouseout="this.style.background='rgba(139,92,246,0.1)'">
+          <img id="nav-avatar" src="" alt="User Avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;" />
+          <div style="display: flex; flex-direction: column;">
+            <span id="nav-username" style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); line-height: 1.2;"></span>
+            <span style="font-size: 0.65rem; color: var(--purple-400); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Dashboard</span>
+          </div>
         </div>
         <a href="https://discord.gg/Rj6qdkGcDH" class="btn-nav" id="nav-join-btn" target="_blank" rel="noopener">
           Join Server
@@ -534,6 +537,52 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== DASHBOARD MODAL ===== -->
+  <div id="dashboardModal" class="dash-overlay" role="dialog" aria-modal="true" aria-labelledby="dashModalTitle">
+    <div class="dash-modal">
+      <div class="dash-header">
+        <div class="dash-user-info">
+          <img id="dash-avatar" src="" alt="" class="dash-avatar" />
+          <div>
+            <div id="dash-username" class="dash-username"></div>
+            <div id="dash-userid" class="dash-userid"></div>
+          </div>
+        </div>
+        <button class="dash-close" id="dashClose" aria-label="Close">✕</button>
+      </div>
+      <div class="dash-body">
+        <div class="dash-section-label">Your Servers with Manage Permissions</div>
+        <div id="dash-servers-list" class="dash-servers-list">
+          <div class="dash-loading">
+            <span class="dash-spinner"></span>
+            Loading servers…
+          </div>
+        </div>
+        <div class="dash-footer-note">
+          More settings coming soon — stay tuned! 🚀
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLOATING CTA ===== -->
+  <div class="fab-wrap" id="fabWrap">
+    <div class="fab-menu" id="fabMenu">
+      <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
+        class="fab-item" id="fab-invite" target="_blank" rel="noopener" title="Add to Server">
+        <span class="fab-icon">➕</span>
+        <span class="fab-label">Add to Server</span>
+      </a>
+      <a href="https://discord.gg/Rj6qdkGcDH" class="fab-item" id="fab-support" target="_blank" rel="noopener" title="Support Server">
+        <span class="fab-icon">💬</span>
+        <span class="fab-label">Support</span>
+      </a>
+    </div>
+    <button class="fab-main" id="fabMain" aria-label="Quick Actions" aria-expanded="false">
+      <span class="fab-main-icon">⚡</span>
+    </button>
+  </div>
 
   <script src="translations.js"></script>
   <script src="script.js"></script>
