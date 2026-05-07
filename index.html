@@ -63,11 +63,17 @@
         <a href="#" class="btn-nav login-discord-btn" id="nav-login-btn">
           Login
         </a>
-        <div id="user-profile" style="display: none; align-items: center; gap: 10px; margin-right: 12px; cursor: pointer; background: rgba(139,92,246,0.1); padding: 4px 12px 4px 4px; border-radius: 20px; border: 1px solid rgba(139,92,246,0.3);" title="Open Dashboard" onmouseover="this.style.background='rgba(139,92,246,0.2)'" onmouseout="this.style.background='rgba(139,92,246,0.1)'">
-          <img id="nav-avatar" src="" alt="User Avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;" />
+        <div id="user-profile"
+          style="display: none; align-items: center; gap: 10px; margin-right: 12px; cursor: pointer; background: rgba(139,92,246,0.1); padding: 4px 12px 4px 4px; border-radius: 20px; border: 1px solid rgba(139,92,246,0.3);"
+          title="Open Dashboard" onmouseover="this.style.background='rgba(139,92,246,0.2)'"
+          onmouseout="this.style.background='rgba(139,92,246,0.1)'">
+          <img id="nav-avatar" src="" alt="User Avatar"
+            style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;" />
           <div style="display: flex; flex-direction: column;">
-            <span id="nav-username" style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); line-height: 1.2;"></span>
-            <span style="font-size: 0.65rem; color: var(--purple-400); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Dashboard</span>
+            <span id="nav-username"
+              style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); line-height: 1.2;"></span>
+            <span
+              style="font-size: 0.65rem; color: var(--purple-400); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Dashboard</span>
           </div>
         </div>
         <a href="https://discord.gg/Rj6qdkGcDH" class="btn-nav" id="nav-join-btn" target="_blank" rel="noopener">
@@ -89,42 +95,46 @@
       <div class="orb orb-3"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-avatar-wrap animate-entrance">
-        <div class="avatar-ring"></div>
-        <div class="hero-avatar">
-          <img src="logo.png" alt="SLD Bot" />
+      <div class="hero-left">
+        <div class="hero-avatar-wrap animate-entrance">
+          <div class="avatar-ring"></div>
+          <div class="hero-avatar">
+            <img src="logo.png" alt="SLD Bot" />
+          </div>
         </div>
       </div>
-      <div class="hero-badge animate-entrance">
-        <span class="badge-dot"></span>
-        Online &amp; Ready
-      </div>
-      <h1 class="hero-title animate-entrance delay-1">
-        Meet <span class="gradient-text-animated">SLD Bot</span><br />
-        The Future of Discord
-      </h1>
-      <p class="hero-desc animate-entrance delay-2">
-        Crystal clear music, advanced moderation, and smart utility commands. 
-        Elevate your server experience with the most powerful bot on Discord.
-      </p>
-      <div class="hero-actions animate-entrance delay-3">
-        <a href="#" class="btn-primary login-discord-btn">
-          🔗 Login with Discord
-        </a>
-        <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
-          class="btn-secondary" id="hero-invite-btn" target="_blank" rel="noopener">
-          ➕ Add to Server
-        </a>
-      </div>
-      <div class="hero-stats animate-entrance delay-4">
-        <div class="stat-item">
-          <span class="stat-num" data-target="35">0</span>
-          <p>Commands</p>
+      <div class="hero-right">
+        <div class="hero-badge animate-entrance">
+          <span class="badge-dot"></span>
+          Online &amp; Ready
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="2">0</span>
-          <p>Languages</p>
+        <h1 class="hero-title animate-entrance delay-1">
+          Meet <span class="gradient-text-animated">SLD Bot</span><br />
+          The Future of Discord
+        </h1>
+        <p class="hero-desc animate-entrance delay-2">
+          Crystal clear music, advanced moderation, and smart utility commands. 
+          Elevate your server experience with the most powerful bot on Discord.
+        </p>
+        <div class="hero-actions animate-entrance delay-3">
+          <a href="#" class="btn-primary login-discord-btn">
+            🔗 Login with Discord
+          </a>
+          <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
+            class="btn-secondary" id="hero-invite-btn" target="_blank" rel="noopener">
+            ➕ Add to Server
+          </a>
+        </div>
+        <div class="hero-stats animate-entrance delay-4">
+          <div class="stat-item">
+            <span class="stat-num" data-target="35">0</span>
+            <p>Commands</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="2">0</span>
+            <p>Languages</p>
+          </div>
         </div>
       </div>
     </div>
@@ -254,7 +264,7 @@
           </div>
           <div class="terminal-title">sld-bot --help</div>
         </div>
-        
+
         <div class="terminal-tabs" id="cmdTabs">
           <button class="cmd-tab active" data-tab="music"><span>~/music</span></button>
           <button class="cmd-tab" data-tab="utility"><span>~/utility</span></button>
@@ -282,8 +292,10 @@
               <div class="cmd-item"><code>/lyrics</code><span>Fetch lyrics for the current or named song</span></div>
               <div class="cmd-item"><code>/voteskip</code><span>Start a vote to skip the current song</span></div>
               <div class="cmd-item"><code>/remove</code><span>Remove a specific song from the queue</span></div>
-              <div class="cmd-item"><code>/move</code><span>Move a song to a different position in the queue</span></div>
-              <div class="cmd-item"><code>/audio_effects</code><span>Apply bass boost, reverb, treble, or EQ preset</span></div>
+              <div class="cmd-item"><code>/move</code><span>Move a song to a different position in the queue</span>
+              </div>
+              <div class="cmd-item"><code>/audio_effects</code><span>Apply bass boost, reverb, treble, or EQ
+                  preset</span></div>
               <div class="cmd-item"><code>/save_queue</code><span>Save the current queue for later</span></div>
               <div class="cmd-item"><code>/load_queue</code><span>Load a previously saved queue</span></div>
               <div class="cmd-item"><code>/createplaylist</code><span>Create a new personal playlist</span></div>
@@ -312,7 +324,8 @@
           <div class="cmd-panel" id="panel-general">
             <div class="cmd-grid">
               <div class="cmd-item"><code>/help</code><span>Show the full help menu with all categories</span></div>
-              <div class="cmd-item"><code>/invite</code><span>Get the bot's invite link to add to your server</span></div>
+              <div class="cmd-item"><code>/invite</code><span>Get the bot's invite link to add to your server</span>
+              </div>
               <div class="cmd-item"><code>/vote</code><span>Vote for SLD Bot on Top.gg (every 12 hours)</span></div>
             </div>
           </div>
@@ -524,10 +537,12 @@
   <footer class="footer">
     <div class="footer-wave">
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z">
+        </path>
       </svg>
     </div>
-    
+
     <div class="footer-main">
       <div class="container">
         <div class="footer-grid">
@@ -537,7 +552,7 @@
               <span>SLD Bot</span>
             </div>
             <p>Premium Discord bot experience. Elevate your server with high-quality music and smart tools.</p>
-            
+
             <div class="footer-status-widget">
               <div class="status-dot-mini"></div>
               <span>Online &amp; Ready</span>
@@ -568,7 +583,8 @@
 
           <div class="footer-col reveal">
             <h4>Add to Discord</h4>
-            <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128" target="_blank" rel="noopener">Invite Bot</a>
+            <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
+              target="_blank" rel="noopener">Invite Bot</a>
             <a href="https://top.gg/bot/1289557315741159544/vote" target="_blank" rel="noopener">Vote Now</a>
           </div>
         </div>
@@ -617,7 +633,8 @@
         <span class="fab-icon">➕</span>
         <span class="fab-label">Add to Server</span>
       </a>
-      <a href="https://discord.gg/Rj6qdkGcDH" class="fab-item" id="fab-support" target="_blank" rel="noopener" title="Support Server">
+      <a href="https://discord.gg/Rj6qdkGcDH" class="fab-item" id="fab-support" target="_blank" rel="noopener"
+        title="Support Server">
         <span class="fab-icon">💬</span>
         <span class="fab-label">Support</span>
       </a>

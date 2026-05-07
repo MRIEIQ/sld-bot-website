@@ -915,11 +915,49 @@ code {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-primary);
   padding: 20px 24px;
+  font-size: 1.1rem;
   font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: var(--cyan-400);
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-a {
+  padding: 0 24px;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.open .faq-a {
+  padding: 0 24px 20px;
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Support Themed */
@@ -929,12 +967,48 @@ code {
   border-radius: var(--radius);
   padding: 32px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  text-decoration: none;
 }
 
 .support-icon {
   font-size: 3rem;
   margin-bottom: 20px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+}
+
+.support-card h3 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.support-card p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.support-link {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--gradient-primary);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.support-link:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 /* ========================================================
@@ -1176,13 +1250,23 @@ code {
   }
 
   .hero {
-    flex-direction: column;
-    text-align: center;
     padding-top: 110px;
   }
 
   .hero-content {
-    max-width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-left, .hero-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-avatar-wrap {
+    margin: 0 auto 32px;
   }
 
   .hero-desc {
@@ -1194,6 +1278,7 @@ code {
   }
 
   .hero-stats {
+    margin: 0 auto;
     justify-content: center;
   }
 

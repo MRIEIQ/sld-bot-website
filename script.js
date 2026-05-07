@@ -419,10 +419,19 @@ window.addEventListener('load', () => {
   setTimeout(removeLoadingScreen, 1000);
 
   const fragment = new URLSearchParams(window.location.hash.slice(1));
-  const accessToken = fragment.get('access_token');
-  const tokenType = fragment.get('token_type');
+  let accessToken = fragment.get('access_token');
+  let tokenType = fragment.get('token_type');
 
-  if (accessToken) {
+  if (accessToken && tokenType) {
+    localStorage.setItem('discord_access_token', accessToken);
+    localStorage.setItem('discord_token_type', tokenType);
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } else {
+    accessToken = localStorage.getItem('discord_access_token');
+    tokenType = localStorage.getItem('discord_token_type');
+  }
+
+  if (accessToken && tokenType) {
     window._dashToken = { tokenType, accessToken };
     // Hide login buttons
     loginBtns.forEach(btn => btn.style.display = 'none');
@@ -443,7 +452,10 @@ window.addEventListener('load', () => {
         authorization: `${tokenType} ${accessToken}`
       }
     })
-      .then(result => result.json())
+      .then(result => {
+        if (!result.ok) throw new Error('Token expired or invalid');
+        return result.json();
+      })
       .then(response => {
         const { username, discriminator, avatar, id } = response;
         const displayName = discriminator === '0' ? username : `${username}#${discriminator}`;
@@ -458,13 +470,16 @@ window.addEventListener('load', () => {
         // Store user data for dashboard
         window._dashUser = { username: displayName, avatar: avatarUrl, id };
 
-        // Clean up URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-
         // Pre-fetch guilds in background
         prefetchGuilds(tokenType, accessToken);
       })
-      .catch(console.error);
+      .catch(err => {
+        console.error(err);
+        localStorage.removeItem('discord_access_token');
+        localStorage.removeItem('discord_token_type');
+        loginBtns.forEach(btn => btn.style.display = '');
+        if (userProfile) userProfile.style.display = 'none';
+      });
   }
 
   // ── Floating Action Button (FAB) ──
