@@ -19,6 +19,16 @@
 
 <body>
 
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loading-screen">
+    <div class="loader-content">
+      <img src="logo.png" alt="SLD Bot" class="loader-logo" />
+      <div class="loader-bar">
+        <div class="loader-progress"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== NAVBAR ===== -->
   <nav id="navbar" class="navbar">
     <div class="nav-container">
@@ -73,23 +83,29 @@
   <!-- ===== HERO ===== -->
   <section id="home" class="hero">
     <div class="hero-bg">
+      <div class="particles-container" id="hero-particles"></div>
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
       <div class="orb orb-3"></div>
-      <div class="particles" id="particles"></div>
     </div>
     <div class="hero-content">
+      <div class="hero-avatar-wrap animate-entrance">
+        <div class="avatar-ring"></div>
+        <div class="hero-avatar">
+          <img src="logo.png" alt="SLD Bot" />
+        </div>
+      </div>
       <div class="hero-badge animate-entrance">
         <span class="badge-dot"></span>
         Online &amp; Ready
       </div>
       <h1 class="hero-title animate-entrance delay-1">
-        Meet <span class="gradient-text">SLD Bot</span><br />
-        Your Ultimate Discord Companion
+        Meet <span class="gradient-text-animated">SLD Bot</span><br />
+        The Future of Discord
       </h1>
       <p class="hero-desc animate-entrance delay-2">
-        Premium music playback, personal playlists, audio effects, and smart utilities — all packed into one sleek bot.
-        Supports slash commands, multilingual, and always online.
+        Crystal clear music, advanced moderation, and smart utility commands. 
+        Elevate your server experience with the most powerful bot on Discord.
       </p>
       <div class="hero-actions animate-entrance delay-3">
         <a href="#" class="btn-primary login-discord-btn">
@@ -110,7 +126,6 @@
           <span class="stat-num" data-target="2">0</span>
           <p>Languages</p>
         </div>
-
       </div>
     </div>
   </section>
@@ -130,24 +145,24 @@
         server utilities — SLD Bot has you covered, 24/7.
       </p>
       <div class="about-grid">
-        <div class="about-card">
+        <div class="glass-card card-purple about-card">
           <div class="about-icon">🎵</div>
           <h3>Premium Music</h3>
           <p>Stream from YouTube, Spotify, and SoundCloud with high-quality audio and audio effects like bass boost,
             reverb, and equalizer presets.</p>
         </div>
-        <div class="about-card">
+        <div class="glass-card card-cyan about-card">
           <div class="about-icon">📂</div>
           <h3>Personal Playlists</h3>
           <p>Create, save, and load personal playlists. Access your saved songs in any server with a single slash
             command, any time.</p>
         </div>
-        <div class="about-card">
+        <div class="glass-card card-pink about-card">
           <div class="about-icon">🌐</div>
           <h3>Multilingual</h3>
           <p>SLD Bot supports both English 🇺🇸 and Arabic 🇸🇦, making it perfect for international communities.</p>
         </div>
-        <div class="about-card">
+        <div class="glass-card card-orange about-card">
           <div class="about-icon">⚡</div>
           <h3>Slash Commands</h3>
           <p>Fully powered by Discord's modern application commands. No prefix memorization needed — just type
@@ -165,55 +180,55 @@
       <h2 class="section-title">Everything Your Server <span class="gradient-text">Needs</span></h2>
       <div class="features-grid">
 
-        <div class="feature-card large">
-          <div class="feature-icon-wrap purple">🎶</div>
+        <div class="glass-card card-purple feature-card large">
+          <div class="feature-icon-wrap">🎶</div>
           <h3>Advanced Music Player</h3>
           <p>Play music from YouTube, Shuffle queues, seek to timestamps, and enjoy rich audio effects in high quality.
           </p>
           <ul class="feature-list">
-            <li>▸ Bass Boost / Reverb / Treble</li>
-            <li>▸ Equalizer Presets (Rock, Pop, Jazz…)</li>
-            <li>▸ Queue Management &amp; Save/Load</li>
-            <li>▸ Vote Skip &amp; Lyrics Display</li>
+            <li><b>▸</b> Bass Boost / Reverb / Treble</li>
+            <li><b>▸</b> Equalizer Presets (Rock, Pop, Jazz…)</li>
+            <li><b>▸</b> Queue Management &amp; Save/Load</li>
+            <li><b>▸</b> Vote Skip &amp; Lyrics Display</li>
           </ul>
         </div>
 
-        <div class="feature-card large right">
-          <div class="feature-icon-wrap teal">📂</div>
+        <div class="glass-card card-cyan feature-card large">
+          <div class="feature-icon-wrap">📂</div>
           <h3>Personal Playlists</h3>
           <p>Create, save, load, and delete personal playlists. Access them any time in any server with a single slash
             command.</p>
           <ul class="feature-list">
-            <li>▸ /createplaylist – Build your list</li>
-            <li>▸ /loadplaylist – Load and play instantly</li>
-            <li>▸ /playlists – See all your saved playlists</li>
-            <li>▸ /deleteplaylist – Clean up old ones</li>
+            <li><b>▸</b> /createplaylist – Build your list</li>
+            <li><b>▸</b> /loadplaylist – Load and play instantly</li>
+            <li><b>▸</b> /playlists – See all your saved playlists</li>
+            <li><b>▸</b> /deleteplaylist – Clean up old ones</li>
           </ul>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap pink">📊</div>
+        <div class="glass-card card-pink feature-card">
+          <div class="feature-icon-wrap">📊</div>
           <h3>Server &amp; User Info</h3>
           <p>Get detailed server statistics, user profiles, avatars, roles, join dates, and live bot performance metrics
             with <code>/server</code> and <code>/userinfo</code>.</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap orange">⚙️</div>
+        <div class="glass-card card-orange feature-card">
+          <div class="feature-icon-wrap">⚙️</div>
           <h3>Custom Settings</h3>
           <p>Set a custom prefix per server and switch between English and Arabic instantly using <code>/setup</code>.
           </p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap blue">🌐</div>
+        <div class="glass-card card-blue feature-card">
+          <div class="feature-icon-wrap">🌐</div>
           <h3>Multilingual</h3>
           <p>Full support for English 🇺🇸 and Arabic 🇸🇦. Use <code>/setup</code> to switch languages for your whole
             server in seconds.</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap purple">⚡</div>
+        <div class="glass-card card-green feature-card">
+          <div class="feature-icon-wrap">⚡</div>
           <h3>Slash Commands</h3>
           <p>All features accessible via modern Discord slash commands. No prefix to memorize — just type <code>/</code>
             and discover everything.</p>
@@ -227,67 +242,82 @@
   <section id="commands" class="section commands-section">
     <div class="container">
       <div class="section-label">Commands</div>
-      <h2 class="section-title">All <span class="gradient-text">Slash Commands</span></h2>
-      <p class="section-desc">Every command is available as a Discord slash command. Just type <code>/</code> in any
-        channel.</p>
+      <h2 class="section-title">Terminal <span class="gradient-text">Interface</span></h2>
+      <p class="section-desc">Explore our extensive library of commands with our interactive terminal interface.</p>
 
-      <div class="cmd-tabs" id="cmdTabs">
-        <button class="cmd-tab active" data-tab="music" id="tab-music">🎵 Music</button>
-        <button class="cmd-tab" data-tab="utility" id="tab-utility">⚙️ Utility</button>
-        <button class="cmd-tab" data-tab="general" id="tab-general">💡 General</button>
-      </div>
-
-      <div class="cmd-panel active" id="panel-music">
-        <div class="cmd-grid">
-          <div class="cmd-item"><code>/play</code><span>Play a song or URL from YouTube/Spotify</span></div>
-          <div class="cmd-item"><code>/skip</code><span>Skip the current song</span></div>
-          <div class="cmd-item"><code>/stop</code><span>Stop playback and leave the voice channel</span></div>
-          <div class="cmd-item"><code>/nowplaying</code><span>Show the currently playing track</span></div>
-          <div class="cmd-item"><code>/queue</code><span>Display the song queue</span></div>
-          <div class="cmd-item"><code>/shuffle</code><span>Shuffle the queue randomly</span></div>
-          <div class="cmd-item"><code>/repeat</code><span>Toggle repeat for the current song</span></div>
-          <div class="cmd-item"><code>/seek</code><span>Jump to a specific timestamp in the song</span></div>
-          <div class="cmd-item"><code>/volume</code><span>Set the playback volume (1–100)</span></div>
-          <div class="cmd-item"><code>/search</code><span>Search for songs and pick from results</span></div>
-          <div class="cmd-item"><code>/lyrics</code><span>Fetch lyrics for the current or named song</span></div>
-          <div class="cmd-item"><code>/voteskip</code><span>Start a vote to skip the current song</span></div>
-          <div class="cmd-item"><code>/remove</code><span>Remove a specific song from the queue</span></div>
-          <div class="cmd-item"><code>/move</code><span>Move a song to a different position in the queue</span></div>
-          <div class="cmd-item"><code>/audio_effects</code><span>Apply bass boost, reverb, treble, or EQ preset</span>
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
           </div>
-          <div class="cmd-item"><code>/save_queue</code><span>Save the current queue for later</span></div>
-          <div class="cmd-item"><code>/load_queue</code><span>Load a previously saved queue</span></div>
-          <div class="cmd-item"><code>/createplaylist</code><span>Create a new personal playlist</span></div>
-          <div class="cmd-item"><code>/playlists</code><span>View all your saved playlists</span></div>
-          <div class="cmd-item"><code>/loadplaylist</code><span>Load and play a saved playlist</span></div>
-          <div class="cmd-item"><code>/deleteplaylist</code><span>Delete one of your playlists</span></div>
+          <div class="terminal-title">sld-bot --help</div>
+        </div>
+        
+        <div class="terminal-tabs" id="cmdTabs">
+          <button class="cmd-tab active" data-tab="music"><span>~/music</span></button>
+          <button class="cmd-tab" data-tab="utility"><span>~/utility</span></button>
+          <button class="cmd-tab" data-tab="general"><span>~/general</span></button>
+        </div>
+
+        <div class="terminal-body">
+          <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="cmd-search" id="cmdSearch" placeholder="Search commands..." />
+          </div>
+
+          <div class="cmd-panel active" id="panel-music">
+            <div class="cmd-grid">
+              <div class="cmd-item"><code>/play</code><span>Play a song or URL from YouTube/Spotify</span></div>
+              <div class="cmd-item"><code>/skip</code><span>Skip the current song</span></div>
+              <div class="cmd-item"><code>/stop</code><span>Stop playback and leave the voice channel</span></div>
+              <div class="cmd-item"><code>/nowplaying</code><span>Show the currently playing track</span></div>
+              <div class="cmd-item"><code>/queue</code><span>Display the song queue</span></div>
+              <div class="cmd-item"><code>/shuffle</code><span>Shuffle the queue randomly</span></div>
+              <div class="cmd-item"><code>/repeat</code><span>Toggle repeat for the current song</span></div>
+              <div class="cmd-item"><code>/seek</code><span>Jump to a specific timestamp in the song</span></div>
+              <div class="cmd-item"><code>/volume</code><span>Set the playback volume (1–100)</span></div>
+              <div class="cmd-item"><code>/search</code><span>Search for songs and pick from results</span></div>
+              <div class="cmd-item"><code>/lyrics</code><span>Fetch lyrics for the current or named song</span></div>
+              <div class="cmd-item"><code>/voteskip</code><span>Start a vote to skip the current song</span></div>
+              <div class="cmd-item"><code>/remove</code><span>Remove a specific song from the queue</span></div>
+              <div class="cmd-item"><code>/move</code><span>Move a song to a different position in the queue</span></div>
+              <div class="cmd-item"><code>/audio_effects</code><span>Apply bass boost, reverb, treble, or EQ preset</span></div>
+              <div class="cmd-item"><code>/save_queue</code><span>Save the current queue for later</span></div>
+              <div class="cmd-item"><code>/load_queue</code><span>Load a previously saved queue</span></div>
+              <div class="cmd-item"><code>/createplaylist</code><span>Create a new personal playlist</span></div>
+              <div class="cmd-item"><code>/playlists</code><span>View all your saved playlists</span></div>
+              <div class="cmd-item"><code>/loadplaylist</code><span>Load and play a saved playlist</span></div>
+              <div class="cmd-item"><code>/deleteplaylist</code><span>Delete one of your playlists</span></div>
+            </div>
+          </div>
+
+          <div class="cmd-panel" id="panel-utility">
+            <div class="cmd-grid">
+              <div class="cmd-item"><code>/ping</code><span>Check bot latency and system performance</span></div>
+              <div class="cmd-item"><code>/server</code><span>Show detailed server information</span></div>
+              <div class="cmd-item"><code>/userinfo</code><span>Show information about a user</span></div>
+              <div class="cmd-item"><code>/avatar</code><span>Get the display avatar of a user</span></div>
+              <div class="cmd-item"><code>/setnick</code><span>Change a member's nickname (Admin)</span></div>
+              <div class="cmd-item"><code>/moveme</code><span>Move yourself to another voice channel</span></div>
+              <div class="cmd-item"><code>/prefix</code><span>Change the bot's command prefix (Admin)</span></div>
+              <div class="cmd-item"><code>/setup</code><span>Set up bot language for this server (Admin)</span></div>
+              <div class="cmd-item"><code>/calc</code><span>Evaluate a math expression</span></div>
+              <div class="cmd-item"><code>/roll</code><span>Roll a dice (e.g. 2d6)</span></div>
+              <div class="cmd-item"><code>/emojis</code><span>List all server emojis</span></div>
+            </div>
+          </div>
+
+          <div class="cmd-panel" id="panel-general">
+            <div class="cmd-grid">
+              <div class="cmd-item"><code>/help</code><span>Show the full help menu with all categories</span></div>
+              <div class="cmd-item"><code>/invite</code><span>Get the bot's invite link to add to your server</span></div>
+              <div class="cmd-item"><code>/vote</code><span>Vote for SLD Bot on Top.gg (every 12 hours)</span></div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="cmd-panel" id="panel-utility">
-        <div class="cmd-grid">
-          <div class="cmd-item"><code>/ping</code><span>Check bot latency and system performance</span></div>
-          <div class="cmd-item"><code>/server</code><span>Show detailed server information</span></div>
-          <div class="cmd-item"><code>/userinfo</code><span>Show information about a user</span></div>
-          <div class="cmd-item"><code>/avatar</code><span>Get the display avatar of a user</span></div>
-          <div class="cmd-item"><code>/setnick</code><span>Change a member's nickname (Admin)</span></div>
-          <div class="cmd-item"><code>/moveme</code><span>Move yourself to another voice channel</span></div>
-          <div class="cmd-item"><code>/prefix</code><span>Change the bot's command prefix (Admin)</span></div>
-          <div class="cmd-item"><code>/setup</code><span>Set up bot language for this server (Admin)</span></div>
-          <div class="cmd-item"><code>/calc</code><span>Evaluate a math expression</span></div>
-          <div class="cmd-item"><code>/roll</code><span>Roll a dice (e.g. 2d6)</span></div>
-          <div class="cmd-item"><code>/emojis</code><span>List all server emojis</span></div>
-        </div>
-      </div>
-
-      <div class="cmd-panel" id="panel-general">
-        <div class="cmd-grid">
-          <div class="cmd-item"><code>/help</code><span>Show the full help menu with all categories</span></div>
-          <div class="cmd-item"><code>/invite</code><span>Get the bot's invite link to add to your server</span></div>
-          <div class="cmd-item"><code>/vote</code><span>Vote for SLD Bot on Top.gg (every 12 hours)</span></div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -492,48 +522,61 @@
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="nav-brand" style="margin-bottom:12px;">
-            <img src="logo.png" alt="SLD Bot" class="brand-logo" />
-            <span>SLD Bot</span>
+    <div class="footer-wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+      </svg>
+    </div>
+    
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand reveal">
+            <div class="nav-brand">
+              <img src="logo.png" alt="SLD Bot" class="brand-logo" />
+              <span>SLD Bot</span>
+            </div>
+            <p>Premium Discord bot experience. Elevate your server with high-quality music and smart tools.</p>
+            
+            <div class="footer-status-widget">
+              <div class="status-dot-mini"></div>
+              <span>Online &amp; Ready</span>
+            </div>
+
+            <div class="social-links">
+              <a href="https://discord.gg/Rj6qdkGcDH" class="social-icon" target="_blank" rel="noopener">💬</a>
+              <a href="https://top.gg/bot/1289557315741159544" class="social-icon" target="_blank" rel="noopener">⭐</a>
+              <a href="#" class="social-icon">🐦</a>
+            </div>
           </div>
-          <p>A premium Discord music bot for music, playlists, and utilities. Trusted by communities worldwide.</p>
-          <div class="social-links">
-            <a href="https://discord.gg/Rj6qdkGcDH" class="social-link" aria-label="Discord" target="_blank"
-              rel="noopener">Discord</a>
-            <a href="https://top.gg/bot/1289557315741159544" class="social-link" aria-label="Top.gg" target="_blank"
-              rel="noopener">Top.gg</a>
+
+          <div class="footer-col reveal">
+            <h4>Explore</h4>
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#commands">Commands</a>
+            <a href="#rules">Rules</a>
+          </div>
+
+          <div class="footer-col reveal">
+            <h4>Support</h4>
+            <a href="#faq">FAQ</a>
+            <a href="#support">Support Server</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+
+          <div class="footer-col reveal">
+            <h4>Add to Discord</h4>
+            <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128" target="_blank" rel="noopener">Invite Bot</a>
+            <a href="https://top.gg/bot/1289557315741159544/vote" target="_blank" rel="noopener">Vote Now</a>
           </div>
         </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <a href="#home">Home</a>
-          <a href="#features">Features</a>
-          <a href="#commands">Commands</a>
-          <a href="#rules">Rules</a>
-          <a href="#faq">FAQ</a>
-          <a href="#support">Support</a>
+
+        <div class="footer-bottom reveal">
+          <p>© 2026 SLD Bot. Redesigned with ❤️ by Qnej.</p>
+          <p>Not affiliated with Discord Inc.</p>
         </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord ToS</a>
-          <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Community Guidelines</a>
-        </div>
-        <div class="footer-col">
-          <h4>Bot Links</h4>
-          <a href="https://discord.com/oauth2/authorize?client_id=1289557315741159544&scope=bot+applications.commands&permissions=37080128"
-            target="_blank" rel="noopener">Invite Bot</a>
-          <a href="https://top.gg/bot/1289557315741159544/vote" target="_blank" rel="noopener">Vote on Top.gg</a>
-          <a href="https://discord.gg/Rj6qdkGcDH" target="_blank" rel="noopener">Support Server</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 SLD Bot. All rights reserved. Not affiliated with Discord Inc.</p>
-        <p>Made with ❤️ for the community.</p>
       </div>
     </div>
   </footer>

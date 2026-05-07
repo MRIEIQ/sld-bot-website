@@ -85,46 +85,148 @@ document.querySelectorAll('.faq-q').forEach(btn => {
   });
 });
 
-// ── Floating particles ──
-function createParticles() {
-  const container = document.getElementById('particles');
+// ── Hero Animated Particles (Stars & Music Notes) ──
+function createHeroParticles() {
+  const container = document.getElementById('hero-particles');
   if (!container) return;
-  for (let i = 0; i < 25; i++) {
+  
+  const icons = ['★', '🎵', '🎶', '✦', '✧', '🎼'];
+  const count = 40;
+  
+  for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
-    p.classList.add('particle');
+    const isNote = Math.random() > 0.5;
+    p.classList.add(isNote ? 'particle-note' : 'particle-star');
+    p.textContent = icons[Math.floor(Math.random() * icons.length)];
+    
+    // Random styling
     p.style.left = Math.random() * 100 + '%';
-    p.style.animationDuration = (8 + Math.random() * 14) + 's';
-    p.style.animationDelay = (Math.random() * 10) + 's';
-    const size = (2 + Math.random() * 3) + 'px';
-    p.style.width = size;
-    p.style.height = size;
-    p.style.opacity = (0.2 + Math.random() * 0.5).toString();
+    p.style.top = (100 + Math.random() * 20) + '%';
+    p.style.fontSize = (10 + Math.random() * 15) + 'px';
+    p.style.color = Math.random() > 0.5 ? 'var(--purple-400)' : 'var(--cyan-400)';
+    
+    // Random animation
+    const duration = 10 + Math.random() * 15;
+    const delay = Math.random() * 20;
+    p.style.animationDuration = duration + 's';
+    p.style.animationDelay = delay + 's';
+    
     container.appendChild(p);
+    
+    // Infinite loop
+    setInterval(() => {
+      p.style.left = Math.random() * 100 + '%';
+    }, (duration + delay) * 1000);
   }
 }
-createParticles();
+createHeroParticles();
 
-// ── Reveal on scroll animation ──
-const revealEls = document.querySelectorAll(
-  '.about-card, .feature-card, .rule-card, .support-card, .cmd-item, .cta-content'
-);
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }, i * 40);
-      revealObserver.unobserve(entry.target);
-    }
+// ── 3D Tilt Effect ──
+function initTilt() {
+  const cards = document.querySelectorAll('.glass-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
   });
-}, { threshold: 0.1 });
-revealEls.forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  revealObserver.observe(el);
-});
+}
+initTilt();
+
+// ── Commands Search & Filtering ──
+function initCmdSearch() {
+  const searchInput = document.getElementById('cmdSearch');
+  if (!searchInput) return;
+  
+  const cmdItems = document.querySelectorAll('.cmd-item');
+  
+  searchInput.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    
+    cmdItems.forEach(item => {
+      const cmdText = item.querySelector('code').textContent.toLowerCase();
+      const descText = item.querySelector('span').textContent.toLowerCase();
+      
+      if (cmdText.includes(term) || descText.includes(term)) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  });
+  
+  // Typing animation for placeholder
+  const placeholders = ['Search for music...', 'Search for utility...', 'Try "/play"', 'Try "/ping"'];
+  let pIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  
+  function type() {
+    const current = placeholders[pIndex];
+    if (isDeleting) {
+      searchInput.placeholder = current.substring(0, charIndex--);
+    } else {
+      searchInput.placeholder = current.substring(0, charIndex++);
+    }
+    
+    let speed = isDeleting ? 50 : 100;
+    
+    if (!isDeleting && charIndex === current.length + 1) {
+      isDeleting = true;
+      speed = 2000; // Wait at end
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      pIndex = (pIndex + 1) % placeholders.length;
+    }
+    
+    setTimeout(type, speed);
+  }
+  type();
+}
+initCmdSearch();
+
+// ── Enhanced Scroll Reveal ──
+function initScrollReveal() {
+  const revealEls = document.querySelectorAll('.reveal, .glass-card, .rule-card, .support-card, .cmd-item');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        
+        // If it's an icon, maybe add a spin
+        const icon = entry.target.querySelector('.about-icon, .feature-icon-wrap, .support-icon');
+        if (icon) {
+          icon.classList.add('reveal-spin', 'active');
+        }
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  
+  revealEls.forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+}
+initScrollReveal();
 
 // ── Interactive UI Upgrades ──
 
@@ -258,12 +360,70 @@ loginBtns.forEach(btn => {
   });
 });
 
+// ── Animated Loading Rain ──
+const loadingScreen = document.getElementById('loading-screen');
+let rainInterval;
+if (loadingScreen) {
+  const rainTexts = ['/play', '/skip', '/queue', '/lyrics', '/help', 'S'];
+  const colors = ['var(--cyan-400)', 'var(--purple-400)'];
+  
+  function createRainDrop() {
+    const drop = document.createElement('div');
+    drop.classList.add('rain-text');
+    drop.textContent = rainTexts[Math.floor(Math.random() * rainTexts.length)];
+    
+    drop.style.left = Math.random() * 100 + 'vw';
+    drop.style.color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Opacity between 0.05 and 0.2
+    drop.style.opacity = (Math.random() * 0.15 + 0.05).toFixed(2);
+    
+    // Animation duration between 2s and 5s
+    const duration = Math.random() * 3 + 2;
+    drop.style.animationDuration = duration + 's';
+    
+    // Font size
+    drop.style.fontSize = (Math.random() * 14 + 10) + 'px';
+    
+    loadingScreen.appendChild(drop);
+    
+    // Remove element after animation
+    setTimeout(() => {
+      if (drop.parentNode) drop.remove();
+    }, duration * 1000);
+  }
+  
+  // Create drops periodically
+  rainInterval = setInterval(createRainDrop, 150);
+}
+
+function removeLoadingScreen() {
+  const loader = document.getElementById('loading-screen');
+  if (loader && !loader.classList.contains('fade-out')) {
+    if (rainInterval) clearInterval(rainInterval);
+    loader.classList.add('fade-out');
+    
+    setTimeout(() => {
+      loader.style.display = 'none';
+      // Clean up rain elements from DOM
+      loader.querySelectorAll('.rain-text').forEach(el => el.remove());
+    }, 500); // 0.5s fade out matches CSS transition
+  }
+}
+
+// Guaranteed loading screen removal fallback (2.5s max)
+setTimeout(removeLoadingScreen, 2500);
+
 window.addEventListener('load', () => {
+  // ── Loading screen fade out ──
+  setTimeout(removeLoadingScreen, 1000);
+
   const fragment = new URLSearchParams(window.location.hash.slice(1));
   const accessToken = fragment.get('access_token');
   const tokenType = fragment.get('token_type');
 
   if (accessToken) {
+    window._dashToken = { tokenType, accessToken };
     // Hide login buttons
     loginBtns.forEach(btn => btn.style.display = 'none');
 
@@ -382,11 +542,20 @@ function renderServers() {
 
   if (_guildsCache === null) {
     list.innerHTML = `<div class="dash-loading"><span class="dash-spinner"></span>Loading servers…</div>`;
+    
+    const startTime = Date.now();
     // Poll until ready
     const poll = setInterval(() => {
       if (_guildsCache !== null) {
         clearInterval(poll);
         renderServers();
+      } else if (Date.now() - startTime > 5000) {
+        clearInterval(poll);
+        list.innerHTML = `
+          <div class="dash-empty" style="color: #ef4444;">
+            <p>Could not load servers. Please try again.</p>
+            <button onclick="retryLoadServers()" class="btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.85rem;">Retry</button>
+          </div>`;
       }
     }, 400);
     return;
@@ -424,6 +593,20 @@ function renderServers() {
 function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+window.retryLoadServers = function() {
+  const tokenObj = window._dashToken;
+  if (tokenObj && tokenObj.accessToken && tokenObj.tokenType) {
+    _guildsCache = null;
+    renderServers();
+    prefetchGuilds(tokenObj.tokenType, tokenObj.accessToken);
+  } else {
+    const list = document.getElementById('dash-servers-list');
+    if (list) {
+      list.innerHTML = `<div class="dash-empty" style="color: #ef4444;">Could not load servers. Please log in again.</div>`;
+    }
+  }
+};
 
 // Dashboard close events
 document.addEventListener('DOMContentLoaded', () => {
